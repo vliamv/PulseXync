@@ -1,7 +1,9 @@
 package com.example.liammartinezheredia.pulsexync;
 
 import android.app.ProgressDialog;
+import android.content.ContentValues;
 import android.content.Intent;
+import android.database.sqlite.SQLiteDatabase;
 import android.media.MediaCodec;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -16,7 +18,10 @@ public class Registro extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_registro);
+
+
     }
+
 
     String nombre ;
     String email;
@@ -30,6 +35,31 @@ public class Registro extends AppCompatActivity {
         Intent regresar = new Intent(this,Login.class);
         startActivity(regresar);
         finish();
+    }
+
+    public void SubirDatos(View miV){
+        SQL_DB sqlAUX = new SQL_DB(this,"DB_Usuarios", null, 1);
+        final SQLiteDatabase db = sqlAUX.getWritableDatabase();
+
+        ContentValues datos = new ContentValues();
+        datos.put("Nombre", nombre);
+        datos.put("Email", email);
+        datos.put("Contraseña", contra);
+
+        if(db != null){
+            try{
+                db.insert("Usuarios", null, datos);
+
+            } catch (Exception e){
+                Toast.makeText(getApplicationContext(),
+                        "Error en Insert " + e,
+                        Toast.LENGTH_LONG).show();
+            }
+        }else{
+            Toast.makeText(getApplicationContext(),
+                    "No existe la base de datos",
+                    Toast.LENGTH_LONG).show();
+        }
     }
 
     public void validar(View miV){
@@ -96,15 +126,17 @@ public class Registro extends AppCompatActivity {
             progressDialog.setTitle("Creando cuenta...");
             progressDialog.setMessage("Por favor espere");
             progressDialog.show();
+            SubirDatos(miv);//manda a llamar el metodo para subir datos
+
 
             new android.os.Handler().postDelayed(
                     new Runnable() {
                         public void run() {
                             Intent entrar = new Intent(Registro.this,Inicio.class);
                             startActivity(entrar);
-                            finish();
+                            //finish();
                         }
-                    }, 2000);
+                    }, 2500);
 
 
 

@@ -73,7 +73,7 @@ public class Login extends AppCompatActivity {
                         public void run() {
                             Intent Entrar = new Intent(Login.this, Inicio.class);
                             startActivity(Entrar);
-                            finish();
+                            //finish();
                         }
                     }, 2000);
 
