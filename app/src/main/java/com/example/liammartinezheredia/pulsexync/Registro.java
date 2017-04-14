@@ -91,9 +91,10 @@ public class Registro extends AppCompatActivity {
 
         try {
 
-            final ProgressDialog progressDialog = new ProgressDialog(Registro.this, R.style.AppTheme);
+            ProgressDialog progressDialog = new ProgressDialog(Registro.this);
             progressDialog.setIndeterminate(true);
-            progressDialog.setMessage("Creando cuenta ...");
+            progressDialog.setTitle("Creando cuenta...");
+            progressDialog.setMessage("Por favor espere");
             progressDialog.show();
 
             new android.os.Handler().postDelayed(

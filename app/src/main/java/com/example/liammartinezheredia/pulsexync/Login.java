@@ -63,9 +63,9 @@ public class Login extends AppCompatActivity {
 
         try {
 
-            final ProgressDialog progressDialog = new ProgressDialog(Login.this, R.style.AppTheme);
-            progressDialog.setIndeterminate(true);
-            progressDialog.setMessage("Autentificando...");
+            ProgressDialog progressDialog = new ProgressDialog(Login.this);
+            progressDialog.setTitle("Autentificando datos...");
+            progressDialog.setMessage("Por favor espere");
             progressDialog.show();
 
             new android.os.Handler().postDelayed(
