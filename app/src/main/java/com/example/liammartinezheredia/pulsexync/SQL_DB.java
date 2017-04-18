@@ -13,7 +13,7 @@ public class SQL_DB extends SQLiteOpenHelper{
 
 
     String Tabla_BD = "CREATE TABLE Usuarios(" + " _id INTEGER PRIMARY KEY AUTOINCREMENT, " +
-            "Nombre TEXT, Email VARCHAR, Contraseña TEXT)";
+            "Nombre TEXT, Email VARCHAR, Contrasena TEXT)";
 
     public SQL_DB(Context contexto, String DB_usuarios, CursorFactory factory, int version){
         super(contexto, DB_usuarios, factory, version);
