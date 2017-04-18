@@ -2,6 +2,8 @@ package com.example.liammartinezheredia.pulsexync;
 
 import android.app.ProgressDialog;
 import android.content.Intent;
+import android.graphics.Color;
+import android.graphics.PorterDuff;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -70,6 +72,7 @@ public class Login extends AppCompatActivity {
         try {
 
             ProgressDialog progressDialog = new ProgressDialog(Login.this);
+
             progressDialog.setTitle("Autentificando datos...");
             progressDialog.setMessage("Por favor espere");
             progressDialog.show();
