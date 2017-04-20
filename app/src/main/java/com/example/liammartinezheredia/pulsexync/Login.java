@@ -8,6 +8,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.view.Window;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -46,7 +47,31 @@ public class Login extends AppCompatActivity {
             //Toast.makeText(this, "Escribe tu correo", Toast.LENGTH_SHORT).show();
 
         } else {
-            emailfull = true;
+            try{
+                for(int i = 0; i<email.length(); ++i){
+                    if(email.charAt(i)=='@'){
+                        for(int j = i+1; j<email.length(); ++j){
+                            if(email.charAt(j)=='.'){
+                                if(email.length()>=j+3){
+                                    if(email.charAt(j+1)=='c'){
+                                        if(email.charAt(j+2)=='o'){
+                                            if(email.charAt(j+3)=='m'){
+                                                emailfull = true;
+                                                break;
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+            catch(Exception e){
+                Emailtxt.setError("Correo no valido");
+            }
+
+
 
 
         }
@@ -76,7 +101,6 @@ public class Login extends AppCompatActivity {
             progressDialog.setTitle("Autentificando datos...");
             progressDialog.setMessage("Por favor espere");
             progressDialog.show();
-
             new android.os.Handler().postDelayed(
                     new Runnable() {
                         public void run() {
@@ -102,6 +126,12 @@ public class Login extends AppCompatActivity {
         startActivity(Nuevousuario);
         finish();
     }
+    /*private void PDialog() {
+        progressDialog = new ProgressDialog(this,R.style.CustomDialog);
+        progressDialog.setProgressStyle(ProgressDialog.STYLE_SPINNER);
+        progressDialog.setMessage("Logging in. Please wait.");
+        progressDialog.show();
+    }*/
 
 
 }
