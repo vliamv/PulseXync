@@ -170,7 +170,7 @@ public class Registro extends AppCompatActivity {
             new android.os.Handler().postDelayed(
                     new Runnable() {
                         public void run() {
-                            Intent entrar = new Intent(Registro.this,Inicio.class);
+                            Intent entrar = new Intent(Registro.this,Menulateral.class);
                             startActivity(entrar);
                             finish();
                         }

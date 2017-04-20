@@ -125,7 +125,7 @@ public class Login extends AppCompatActivity {
                     new Runnable() {
                         public void run() {
 
-                            Intent Entrar = new Intent(Login.this, Inicio.class);
+                            Intent Entrar = new Intent(Login.this, Menulateral.class);
                             startActivity(Entrar);
                             finish();
                         }
