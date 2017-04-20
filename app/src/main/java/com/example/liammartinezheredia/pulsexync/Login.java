@@ -2,16 +2,19 @@ package com.example.liammartinezheredia.pulsexync;
 
 import android.app.ProgressDialog;
 import android.content.Intent;
-import android.graphics.Color;
-import android.graphics.PorterDuff;
-import android.support.v7.app.AppCompatActivity;
+import android.os.AsyncTask;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.View;
-import android.view.Window;
 import android.view.inputmethod.InputMethodManager;
-import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
+/*import org.ksoap2.SoapEnvelope;
+import org.ksoap2.serialization.SoapObject;
+import org.ksoap2.serialization.SoapPrimitive;
+import org.ksoap2.serialization.SoapSerializationEnvelope;
+import org.ksoap2.transport.HttpTransportSE;*/
 
 public class Login extends AppCompatActivity {
 
@@ -48,7 +51,8 @@ public class Login extends AppCompatActivity {
             //Toast.makeText(this, "Escribe tu correo", Toast.LENGTH_SHORT).show();
 
         } else {
-            try{
+            boolean auxmail = false;
+
                 for(int i = 0; i<email.length(); ++i){
                     if(email.charAt(i)=='@'){
                         for(int j = i+1; j<email.length(); ++j){
@@ -57,7 +61,7 @@ public class Login extends AppCompatActivity {
                                     if(email.charAt(j+1)=='c'){
                                         if(email.charAt(j+2)=='o'){
                                             if(email.charAt(j+3)=='m'){
-                                                emailfull = true;
+                                                auxmail = true;
                                                 break;
                                             }
                                         }
@@ -67,10 +71,14 @@ public class Login extends AppCompatActivity {
                         }
                     }
                 }
+
+            if(auxmail==true){
+                emailfull = true;
             }
-            catch(Exception e){
+            else{
                 Emailtxt.setError("Correo no valido");
             }
+
 
 
 
@@ -109,12 +117,17 @@ public class Login extends AppCompatActivity {
             progressDialog.setTitle("Autentificando datos...");
             progressDialog.setMessage("Por favor espere");
             progressDialog.show();
+
+            //llamarWS loginTH = new llamarWS();
+           // loginTH.execute();
+
             new android.os.Handler().postDelayed(
                     new Runnable() {
                         public void run() {
+
                             Intent Entrar = new Intent(Login.this, Inicio.class);
                             startActivity(Entrar);
-                            //finish();
+                            finish();
                         }
                     }, 2000);
 
@@ -134,6 +147,62 @@ public class Login extends AppCompatActivity {
         startActivity(Nuevousuario);
         finish();
     }
+
+    /*private class llamarWS extends AsyncTask<Void,Void,Boolean>{
+        @Override
+        protected Boolean doInBackground(Void... params) {
+// TODO: attempt authentication against a network service.
+//WebService - Opciones
+            String NAMESPACE = "http://ws/";
+            String URL="http://148.204.168.11:8080/WebApplication6/wsTest?WSDL";
+            String METHOD_NAME = "getInfo";
+            String SOAP_ACTION = "http://ws/hello";
+
+            SoapObject request = new SoapObject(NAMESPACE, METHOD_NAME);
+            request.addProperty("name", xx);
+
+
+            SoapSerializationEnvelope envelope = new SoapSerializationEnvelope(SoapEnvelope.VER11);
+            envelope.setOutputSoapObject(request);
+
+
+            HttpTransportSE ht = new HttpTransportSE(URL);
+            try {
+                ht.call(SOAP_ACTION, envelope);
+                SoapPrimitive response = (SoapPrimitive)envelope.getResponse();
+                resultado=response.toString();
+
+                Log.i("Resultado: ",resultado);
+            }
+            catch (Exception e)
+            {
+                e.printStackTrace();
+                return false;
+            }
+            return true;
+        }
+
+        @Override
+        protected void onPostExecute(final Boolean success) {
+            if(success==false){
+                Toast.makeText(getApplicationContext(), "Error", Toast.LENGTH_LONG).show();
+
+            }
+            else{
+                Toast.makeText(getApplicationContext(), "El resultado es: "+resultado, Toast.LENGTH_LONG).show();
+                txt.setText(resultado);
+                ///es la interaccion
+
+            }
+        }
+
+        @Override
+        protected void onCancelled() {
+            Toast.makeText(getApplicationContext(), "Error", Toast.LENGTH_LONG).show();
+        }
+    }*/
+
+
     /*private void PDialog() {
         progressDialog = new ProgressDialog(this,R.style.CustomDialog);
         progressDialog.setProgressStyle(ProgressDialog.STYLE_SPINNER);

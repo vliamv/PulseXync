@@ -93,18 +93,18 @@ public class Registro extends AppCompatActivity {
             emailtxt.setError("Escribe tu correo");
 
         }else{
-            try {
-                for (int i = 0; i < email.length(); ++i) {
-                    if (email.charAt(i) == '@') {
-                        for (int j = i + 1; j < email.length(); ++j) {
-                            if (email.charAt(j) == '.') {
-                                if (email.length() >= j + 3) {
-                                    if (email.charAt(j + 1) == 'c') {
-                                        if (email.charAt(j + 2) == 'o') {
-                                            if (email.charAt(j + 3) == 'm') {
-                                                emailfull = true;
-                                                break;
-                                            }
+            boolean auxmail = false;
+
+            for(int i = 0; i<email.length(); ++i){
+                if(email.charAt(i)=='@'){
+                    for(int j = i+1; j<email.length(); ++j){
+                        if(email.charAt(j)=='.'){
+                            if(email.length()>=j+3){
+                                if(email.charAt(j+1)=='c'){
+                                    if(email.charAt(j+2)=='o'){
+                                        if(email.charAt(j+3)=='m'){
+                                            auxmail = true;
+                                            break;
                                         }
                                     }
                                 }
@@ -113,9 +113,13 @@ public class Registro extends AppCompatActivity {
                     }
                 }
             }
-                catch(Exception e){
-                    emailtxt.setError("Correo no valido");
-                }
+
+            if(auxmail==true){
+                emailfull = true;
+            }
+            else{
+                emailtxt.setError("Correo no valido");
+            }
         }
         if (contra.isEmpty()){
             contratxt.setError("Escribe una contraseña");
@@ -168,7 +172,7 @@ public class Registro extends AppCompatActivity {
                         public void run() {
                             Intent entrar = new Intent(Registro.this,Inicio.class);
                             startActivity(entrar);
-                            //finish();
+                            finish();
                         }
                     }, 2500);
 
