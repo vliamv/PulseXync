@@ -10,6 +10,7 @@ import android.os.Bundle;
 import android.util.Patterns;
 import android.view.View;
 import android.view.Window;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -123,8 +124,11 @@ public class Registro extends AppCompatActivity {
         }
         if (contra.equals(contra2)){
             contraigual = true;
+            CerrarTeclado(miV);
+
         }else{
             contra2txt.setError("La contraseña no coincide ");
+            CerrarTeclado(miV);
         }
 
         if((nombrefull && emailfull && contrafull && contraigual) == true){
@@ -136,6 +140,12 @@ public class Registro extends AppCompatActivity {
 
 
 
+    }
+
+    public void CerrarTeclado(View miV){
+        InputMethodManager imm =
+                (InputMethodManager) getSystemService(INPUT_METHOD_SERVICE);
+        imm.hideSoftInputFromWindow(miV.getWindowToken(), 0);
     }
 
     public void CrearCuenta(View miv){

@@ -17,6 +17,12 @@
         <item name="colorAccent">@color/colorAccent</item>
 
     </style>
+    <style name="EdittxtColor" parent="Theme.AppCompat.Light">
+        <item name="colorControlNormal">#000000</item>
+        <item name="colorControlActivated">#FFFFFF</item>
+        <item name="android:textColorHighlight">#FFFF4444</item>
+    </style>
+
 
 
 </resources>

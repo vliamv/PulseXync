@@ -39,6 +39,7 @@
         android:textColorLink="@android:color/background_light"
         android:textColorHint="@android:color/darker_gray"
         android:hint="tu_mail@ejemplo.com"
+        android:theme="@style/EdittxtColor"
         android:textColor="@android:color/darker_gray" />
 
     <EditText
@@ -53,7 +54,7 @@
         android:textCursorDrawable="@android:color/background_light"
         android:textColorHint="@android:color/darker_gray"
         android:textColorLink="@android:color/white"
-        android:hint="Contraseña"
+        android:theme="@style/EdittxtColor"        android:hint="Contraseña"
         android:textColorHighlight="@android:color/darker_gray"
         android:textColor="@android:color/darker_gray" />
 

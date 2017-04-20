@@ -8,6 +8,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.view.Window;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -78,16 +79,23 @@ public class Login extends AppCompatActivity {
         if (contra.isEmpty()) {
             Contratxt.setError("Escribe tu contraseña");
             //Toast.makeText(this, "Escribe tu contraseña", Toast.LENGTH_SHORT).show();
+            CerrarTeclado(miV);
 
         } else {
             contrafull = true;
-
+            CerrarTeclado(miV);
 
         }
         if ((emailfull && contrafull) == true) {
             Entrar(miV);
         }
 
+    }
+
+    public void CerrarTeclado(View miV){
+        InputMethodManager imm =
+                (InputMethodManager) getSystemService(INPUT_METHOD_SERVICE);
+        imm.hideSoftInputFromWindow(miV.getWindowToken(), 0);
     }
 
     public void Entrar (View miV){
