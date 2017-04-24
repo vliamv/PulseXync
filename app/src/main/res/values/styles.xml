@@ -25,6 +25,7 @@
         <item name="android:textColorHighlight">#FFFF4444</item>
     </style>
 
+
     <style name="AppTheme.NoActionBar">
         <item name="windowActionBar">false</item>
         <item name="windowNoTitle">true</item>

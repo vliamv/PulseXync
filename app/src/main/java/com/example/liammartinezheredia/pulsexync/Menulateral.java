@@ -1,5 +1,6 @@
 package com.example.liammartinezheredia.pulsexync;
 
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
@@ -102,9 +103,22 @@ public class Menulateral extends AppCompatActivity
             Intent Ir_a = new Intent(this,Reuniones.class);
             startActivity(Ir_a);
         } else if (id == R.id.cerrar) {
-            Intent Ir_a = new Intent(this,Login.class);
-            startActivity(Ir_a);
-            finish();
+            ProgressDialog progressDialog = new ProgressDialog(Menulateral.this);
+            progressDialog.setTitle("Cerrando sesion...");
+            progressDialog.setMessage("Por favor espere");
+            progressDialog.show();
+
+            new android.os.Handler().postDelayed(
+                    new Runnable() {
+                        public void run() {
+
+                            Intent Ir_a = new Intent(Menulateral.this,Login.class);
+                            startActivity(Ir_a);
+                            finish();
+                        }
+                    }, 1500);
+
+
 
         } else if (id == R.id.configuracion) {
             Intent Ir_a = new Intent(this,Configuracion.class);
