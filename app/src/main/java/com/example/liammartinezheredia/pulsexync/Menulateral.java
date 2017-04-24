@@ -1,5 +1,6 @@
 package com.example.liammartinezheredia.pulsexync;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -12,9 +13,12 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.TextView;
 
 public class Menulateral extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
+
+    TextView txtcorreo;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -22,6 +26,13 @@ public class Menulateral extends AppCompatActivity
         setContentView(R.layout.activity_menulateral);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+
+        txtcorreo = (TextView) findViewById(R.id.correo);
+
+        /*Intent agarrardatos = getIntent();
+        Bundle extras =agarrardatos.getExtras();
+        String correo = (String)extras.get("correo");
+        txtcorreo.setText(correo);*/
 
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
@@ -80,16 +91,24 @@ public class Menulateral extends AppCompatActivity
         // Handle navigation view item clicks here.
         int id = item.getItemId();
 
-        if (id == R.id.nav_camera) {
+        if (id == R.id.inicio) {
             // Handle the camera action
-        } else if (id == R.id.nav_gallery) {
+            Intent Ir_a = new Intent(this,Inicio.class);
+            startActivity(Ir_a);
+        } else if (id == R.id.amigos) {
+            Intent Ir_a = new Intent(this,Amigos.class);
+            startActivity(Ir_a);
+        } else if (id == R.id.reuniones) {
+            Intent Ir_a = new Intent(this,Reuniones.class);
+            startActivity(Ir_a);
+        } else if (id == R.id.cerrar) {
+            Intent Ir_a = new Intent(this,Login.class);
+            startActivity(Ir_a);
+            finish();
 
-        } else if (id == R.id.nav_slideshow) {
-
-        } else if (id == R.id.nav_manage) {
-
-        } else if (id == R.id.nav_share) {
-
+        } else if (id == R.id.configuracion) {
+            Intent Ir_a = new Intent(this,Configuracion.class);
+            startActivity(Ir_a);
         }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);

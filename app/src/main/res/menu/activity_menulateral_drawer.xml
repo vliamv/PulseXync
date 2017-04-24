@@ -3,29 +3,37 @@
 
     <group android:checkableBehavior="single">
         <item
-            android:id="@+id/nav_camera"
+            android:id="@+id/inicio"
             android:icon="@drawable/ic_menu_inicio"
             android:title="Inicio" />
         <item
-            android:id="@+id/nav_gallery"
+            android:id="@+id/amigos"
             android:icon="@drawable/ic_menu_amigos"
-            android:title="Amigos" />
+            android:title="Xync friends" />
         <item
-            android:id="@+id/nav_slideshow"
+            android:id="@+id/reuniones"
             android:icon="@drawable/ic_menu_reuninon"
-            android:title="Reuninones" />
+            android:title="Meetings" />
         <item
-            android:id="@+id/nav_manage"
-            android:icon="@drawable/ic_menu_config"
-            android:title="Configuracion" />
+            android:id="@+id/pulse_sync"
+            android:icon="@drawable/ic_menu_share"
+            android:title="Pulse xync">
+
+        </item>
+
     </group>
 
     <item android:title="Sesión">
         <menu>
             <item
-                android:id="@+id/nav_share"
+                android:id="@+id/cerrar"
                 android:icon="@drawable/ic_menu_cerrar"
                 android:title="Cerrar Sesión" />
+
+            <item
+                android:id="@+id/configuracion"
+                android:icon="@drawable/ic_menu_config"
+                android:title="Configuracion" />
         </menu>
     </item>
 

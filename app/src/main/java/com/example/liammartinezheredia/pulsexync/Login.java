@@ -24,7 +24,9 @@ public class Login extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
+
     }
+
 
 
 
@@ -126,6 +128,7 @@ public class Login extends AppCompatActivity {
                         public void run() {
 
                             Intent Entrar = new Intent(Login.this, Menulateral.class);
+                            //Entrar.putExtra("Email",email);
                             startActivity(Entrar);
                             finish();
                         }
