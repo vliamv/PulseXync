@@ -34,11 +34,8 @@
             android:name=".Amigos"
             android:label="@string/title_activity_amigos"
             android:theme="@style/AppTheme.NoActionBar" />
-        <activity
-            android:name=".Reuniones"
-            android:label="@string/title_activity_reuniones"
-            android:theme="@style/AppTheme.NoActionBar" />
-        <activity android:name=".Pulse_xync"></activity>
+        <activity android:name=".Pulse_xync" />
+        <activity android:name=".Reuniones"></activity>
     </application>
 
 </manifest>

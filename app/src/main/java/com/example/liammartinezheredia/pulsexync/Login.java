@@ -10,11 +10,11 @@ import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.TextView;
 import android.widget.Toast;
-/*import org.ksoap2.SoapEnvelope;
+import org.ksoap2.SoapEnvelope;
 import org.ksoap2.serialization.SoapObject;
 import org.ksoap2.serialization.SoapPrimitive;
 import org.ksoap2.serialization.SoapSerializationEnvelope;
-import org.ksoap2.transport.HttpTransportSE;*/
+import org.ksoap2.transport.HttpTransportSE;
 
 public class Login extends AppCompatActivity {
 
@@ -23,7 +23,6 @@ public class Login extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
-
 
     }
 
@@ -120,19 +119,29 @@ public class Login extends AppCompatActivity {
             progressDialog.setMessage("Por favor espere");
             progressDialog.show();
 
-            //llamarWS loginTH = new llamarWS();
-           // loginTH.execute();
+
 
             new android.os.Handler().postDelayed(
                     new Runnable() {
                         public void run() {
 
-                            Intent Entrar = new Intent(Login.this, Menulateral.class);
-                            //Entrar.putExtra("Email",email);
-                            startActivity(Entrar);
-                            finish();
+                            //*/
+                            llamarWS loginTH = new llamarWS();
+                            loginTH.execute();
+                            //Intent Entrar = new Intent(Login.this, Menulateral.class);
+                            //Creamos la información a pasar entre actividades
+                            //Bundle mandar = new Bundle();
+                            //mandar.putString("Correo", email);
+
+                            //Añadimos la información al intent
+                            //Entrar.putExtras(mandar);
+
+
+                            //startActivity(Entrar);
+                            //finish();
+                            ///*
                         }
-                    }, 2000);
+                    }, 1500);
 
 
 
@@ -151,18 +160,34 @@ public class Login extends AppCompatActivity {
         finish();
     }
 
-    /*private class llamarWS extends AsyncTask<Void,Void,Boolean>{
+    private class llamarWS extends AsyncTask<Void,Void,Boolean>{
         @Override
         protected Boolean doInBackground(Void... params) {
 // TODO: attempt authentication against a network service.
 //WebService - Opciones
-            String NAMESPACE = "http://ws/";
-            String URL="http://148.204.168.11:8080/WebApplication6/wsTest?WSDL";
+
+            setContentView(R.layout.activity_login);
+
+
+            String NAMESPACE = "http://urn:BuscarAlumno/";
+            String URL="http://http://172.20.10.4//BuscarAlumno.wsdl";
             String METHOD_NAME = "getInfo";
-            String SOAP_ACTION = "http://ws/hello";
+            String SOAP_ACTION = "http://urn:BuscarAlumno/getInfo";
+
+
+            String resultadoWS;
+            Boolean resultAUX = false;
+
+
+
+            //View miV = new View();
+
+
 
             SoapObject request = new SoapObject(NAMESPACE, METHOD_NAME);
-            request.addProperty("name", xx);
+            request.addProperty("emailws", email);
+            request.addProperty("contraseñaws", contra);
+
 
 
             SoapSerializationEnvelope envelope = new SoapSerializationEnvelope(SoapEnvelope.VER11);
@@ -173,9 +198,28 @@ public class Login extends AppCompatActivity {
             try {
                 ht.call(SOAP_ACTION, envelope);
                 SoapPrimitive response = (SoapPrimitive)envelope.getResponse();
-                resultado=response.toString();
+                resultadoWS=response.toString();
+                if(resultadoWS == "pasa"){
+                    resultAUX= true;
+                }else{
+                    resultAUX = false;
+                }
 
-                Log.i("Resultado: ",resultado);
+                if(resultAUX == true){
+                    Intent Entrar = new Intent(Login.this, Menulateral.class);
+
+                    //Bundle mandar = new Bundle();
+                    //mandar.putString("Correo", email);
+
+                    //Entrar.putExtras(mandar);
+
+                    startActivity(Entrar);
+                    finish();
+                }else{
+                    CamposIncorrectos();
+
+                }
+                //Log.i("Resultado: ",resultadoWS);
             }
             catch (Exception e)
             {
@@ -183,18 +227,22 @@ public class Login extends AppCompatActivity {
                 return false;
             }
             return true;
+
         }
+
+
 
         @Override
         protected void onPostExecute(final Boolean success) {
             if(success==false){
-                Toast.makeText(getApplicationContext(), "Error", Toast.LENGTH_LONG).show();
+                Toast.makeText(getApplicationContext(), "Error datos incorrectos", Toast.LENGTH_LONG).show();
 
             }
             else{
-                Toast.makeText(getApplicationContext(), "El resultado es: "+resultado, Toast.LENGTH_LONG).show();
-                txt.setText(resultado);
-                ///es la interaccion
+                Intent Entrar = new Intent(Login.this, Menulateral.class);
+                //Entrar.putExtra("Email",email);
+                startActivity(Entrar);
+                finish();
 
             }
         }
@@ -203,8 +251,30 @@ public class Login extends AppCompatActivity {
         protected void onCancelled() {
             Toast.makeText(getApplicationContext(), "Error", Toast.LENGTH_LONG).show();
         }
-    }*/
 
+        public void CamposIncorrectos (){
+
+            TextView Emailtxt =  (TextView) findViewById(R.id.email);
+            Emailtxt.setError("Correo o contraseña incorrectos");
+            Emailtxt.setText("");
+            TextView Contratxt =  (TextView) findViewById(R.id.contraseña);
+            Contratxt.setText("");
+
+
+        }
+    }
+
+
+    public void CamposIncorrectos (View miV){
+
+        TextView Emailtxt =  (TextView) findViewById(R.id.email);
+        Emailtxt.setError("Correo o contraseña incorrectos");
+        Emailtxt.setText("");
+        TextView Contratxt =  (TextView) findViewById(R.id.contraseña);
+        Contratxt.setText("");
+
+
+    }
 
     /*private void PDialog() {
         progressDialog = new ProgressDialog(this,R.style.CustomDialog);

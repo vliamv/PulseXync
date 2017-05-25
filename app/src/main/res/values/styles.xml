@@ -24,14 +24,22 @@
         <item name="colorControlActivated">#FFFFFF</item>
         <item name="android:textColorHighlight">#FFFF4444</item>
     </style>
+<style name="rojito" parent="Theme.AppCompat.Light">
+    <item name="colorPrimary">@color/colorTop</item>
+    <item name="colorPrimaryDark">@color/colorTop</item>
+    <item name="colorAccent">@color/colorAccent</item>
 
+</style>
 
     <style name="AppTheme.NoActionBar">
         <item name="windowActionBar">false</item>
         <item name="windowNoTitle">true</item>
     </style>
 
-    <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
+    <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar">
+        <item name="colorPrimary">@color/colorTop</item>
+
+    </style>
 
     <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
 

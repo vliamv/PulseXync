@@ -174,7 +174,7 @@ public class Registro extends AppCompatActivity {
                             startActivity(entrar);
                             finish();
                         }
-                    }, 2500);
+                    }, 1500);
 
 
 

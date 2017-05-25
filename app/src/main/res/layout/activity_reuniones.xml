@@ -1,47 +1,207 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:background="#BF1A24"
+    android:id="@+id/activity_reuniones"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:fitsSystemWindows="true"
-    tools:context="com.example.liammartinezheredia.pulsexync.Reuniones">
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    tools:context="com.example.liammartinezheredia.pulsexync.Reuniones"
+    android:theme="@style/rojito"
+    >
 
-    <android.support.design.widget.AppBarLayout
-        android:id="@+id/app_bar"
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="@dimen/app_bar_height"
-        android:fitsSystemWindows="true"
-        android:theme="@style/AppTheme.AppBarOverlay">
+        android:layout_height="match_parent">
 
-        <android.support.design.widget.CollapsingToolbarLayout
-            android:id="@+id/toolbar_layout"
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="40dp">
+
+            <EditText
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:inputType="textPersonName"
+                android:ems="10"
+                android:layout_alignBottom="@+id/buscarbtn"
+                android:layout_alignParentStart="true"
+                android:id="@+id/editText"
+                android:layout_weight="1" />
+
+            <Button
+                android:text="Buscar"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentTop="true"
+                android:layout_alignParentEnd="true"
+                android:id="@+id/buscarbtn"
+                android:background="@color/colorTop"
+                android:textColor="@android:color/background_light"
+                android:layout_weight="1" />
+
+        </LinearLayout>
+
+        <ScrollView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:fitsSystemWindows="true"
-            app:contentScrim="?attr/colorPrimary"
-            app:layout_scrollFlags="scroll|exitUntilCollapsed">
+            android:paddingTop="60dp">
 
-            <android.support.v7.widget.Toolbar
-                android:id="@+id/toolbar"
+            <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="?attr/actionBarSize"
-                app:layout_collapseMode="pin"
-                app:popupTheme="@style/AppTheme.PopupOverlay" />
+                android:layout_height="wrap_content"
+                android:orientation="vertical" >
 
-        </android.support.design.widget.CollapsingToolbarLayout>
-    </android.support.design.widget.AppBarLayout>
+                <LinearLayout
+                    android:orientation="vertical"
+                    android:layout_width="match_parent"
+                    android:layout_height="257dp">
 
-    <include layout="@layout/content_reuniones" />
+                    <TextView
+                        android:text="Nombre del evento"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/textView16" />
 
-    <android.support.design.widget.FloatingActionButton
-        android:id="@+id/fab"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_margin="@dimen/fab_margin"
-        app:layout_anchor="@id/app_bar"
-        app:layout_anchorGravity="bottom|end"
-        app:srcCompat="@android:drawable/ic_dialog_email" />
+                    <ImageView
+                        android:layout_width="match_parent"
+                        android:layout_height="90dp"
+                        app:srcCompat="@drawable/ic_menu_amigos"
+                        android:id="@+id/imageView6" />
 
-</android.support.design.widget.CoordinatorLayout>
+                    <TextView
+                        android:text="Texto del evento aqui"
+                        android:layout_width="match_parent"
+                        android:layout_height="53dp"
+                        android:id="@+id/textView15" />
+
+                    <LinearLayout
+                        android:orientation="horizontal"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent">
+
+                        <Button
+                            android:text="Asistir"
+                            android:layout_width="125dp"
+                            android:layout_height="wrap_content"
+                            android:id="@+id/asistir"
+                            android:layout_weight="1" />
+
+                        <Button
+                            android:text="Invitar amigos"
+                            android:layout_width="124dp"
+                            android:layout_height="wrap_content"
+                            android:layout_toRightOf="@+id/asistir"
+                            android:layout_toEndOf="@+id/asistir"
+
+                            android:id="@+id/invitar"
+                            android:layout_weight="1" />
+                    </LinearLayout>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:orientation="vertical"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <TextView
+                        android:text="Nombre del evento"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/textNom" />
+
+                    <ImageView
+                        android:layout_width="match_parent"
+                        android:layout_height="90dp"
+                        app:srcCompat="@drawable/ic_menu_amigos"
+                        android:id="@+id/img" />
+
+                    <TextView
+                        android:text="Texto del evento aqui"
+                        android:layout_width="match_parent"
+                        android:layout_height="53dp"
+                        android:id="@+id/textevento" />
+                    <LinearLayout
+                        android:orientation="horizontal"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent">
+
+                        <Button
+                            android:text="Asistir"
+                            android:layout_width="125dp"
+                            android:layout_height="wrap_content"
+                            android:id="@+id/asistir2"
+                            android:layout_weight="1" />
+
+                        <Button
+                            android:text="Invitar amigos"
+                            android:layout_width="124dp"
+                            android:layout_height="wrap_content"
+                            android:layout_toRightOf="@+id/asistir2"
+                            android:layout_toEndOf="@+id/asistir2"
+
+                            android:id="@+id/invitar2"
+                            android:layout_weight="1" />
+                    </LinearLayout>
+
+
+                </LinearLayout>
+                <LinearLayout
+                    android:orientation="vertical"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <TextView
+                        android:text="Nombre del evento"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/textNom3" />
+
+                    <ImageView
+                        android:layout_width="match_parent"
+                        android:layout_height="90dp"
+                        app:srcCompat="@drawable/ic_menu_amigos"
+                        android:id="@+id/img3" />
+
+                    <TextView
+                        android:text="Texto del evento aqui"
+                        android:layout_width="match_parent"
+                        android:layout_height="53dp"
+                        android:id="@+id/textevento3" />
+                    <LinearLayout
+                        android:orientation="horizontal"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent">
+
+                        <Button
+                            android:text="Asistir"
+                            android:layout_width="125dp"
+                            android:layout_height="wrap_content"
+                            android:id="@+id/asistir3"
+                            android:layout_weight="1" />
+
+                        <Button
+                            android:text="Invitar amigos"
+                            android:layout_width="124dp"
+                            android:layout_height="wrap_content"
+                            android:layout_toRightOf="@+id/asistir3"
+                            android:layout_toEndOf="@+id/asistir3"
+
+                            android:id="@+id/invitar3"
+                            android:layout_weight="1" />
+                    </LinearLayout>
+
+
+                </LinearLayout>
+
+
+            </LinearLayout>
+        </ScrollView>
+
+    </RelativeLayout>
+
+</RelativeLayout>

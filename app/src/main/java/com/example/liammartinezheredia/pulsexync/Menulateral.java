@@ -28,12 +28,16 @@ public class Menulateral extends AppCompatActivity
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
+
+
         txtcorreo = (TextView) findViewById(R.id.correo);
 
-        /*Intent agarrardatos = getIntent();
-        Bundle extras =agarrardatos.getExtras();
-        String correo = (String)extras.get("correo");
-        txtcorreo.setText(correo);*/
+        //Recuperamos la información pasada en el intent
+        //Bundle bundle = this.getIntent().getExtras();
+
+        //Construimos el mensaje a mostrar
+        //txtcorreo.setText(bundle.getString("Correo"));
+
 
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
@@ -89,6 +93,7 @@ public class Menulateral extends AppCompatActivity
     @SuppressWarnings("StatementWithEmptyBody")
     @Override
     public boolean onNavigationItemSelected(MenuItem item) {
+
         // Handle navigation view item clicks here.
         int id = item.getItemId();
 
