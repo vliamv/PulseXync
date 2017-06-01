@@ -2,6 +2,8 @@ package com.example.liammartinezheredia.pulsexync;
 
 import android.app.ProgressDialog;
 import android.content.Intent;
+import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -17,6 +19,7 @@ import org.ksoap2.serialization.SoapSerializationEnvelope;
 import org.ksoap2.transport.HttpTransportSE;
 
 public class Login extends AppCompatActivity {
+    private Cursor fila;
 
 
     @Override
@@ -35,6 +38,8 @@ public class Login extends AppCompatActivity {
     String email;
     String contra;
 
+    TextView Emailtxt =  (TextView) findViewById(R.id.email);
+    TextView Contratxt =  (TextView) findViewById(R.id.contraseña);
 
     public void Validar (View miV){
 
@@ -42,10 +47,10 @@ public class Login extends AppCompatActivity {
 
         //verifica que esten llenos los campos
 
-        TextView Emailtxt =  (TextView) findViewById(R.id.email);
+
         email = Emailtxt.getText().toString();
-        TextView Contratxt =  (TextView) findViewById(R.id.contraseña);
         contra = Contratxt.getText().toString();
+
 
         if (email.isEmpty()) {
             Emailtxt.setError("Escribe tu Email");
@@ -109,7 +114,7 @@ public class Login extends AppCompatActivity {
 
     public void Entrar (View miV){
 
-
+        TomarDatos(miV);
 
         try {
 
@@ -119,15 +124,25 @@ public class Login extends AppCompatActivity {
             progressDialog.setMessage("Por favor espere");
             progressDialog.show();
 
+            TomarDatos(miV);
 
 
             new android.os.Handler().postDelayed(
                     new Runnable() {
                         public void run() {
 
+
+
+
+
                             //*/
-                            llamarWS loginTH = new llamarWS();
-                            loginTH.execute();
+
+
+                            //llamarWS loginTH = new llamarWS();
+                            //loginTH.execute();
+
+
+
                             //Intent Entrar = new Intent(Login.this, Menulateral.class);
                             //Creamos la información a pasar entre actividades
                             //Bundle mandar = new Bundle();
@@ -142,6 +157,9 @@ public class Login extends AppCompatActivity {
                             ///*
                         }
                     }, 1500);
+
+
+
 
 
 
@@ -274,6 +292,33 @@ public class Login extends AppCompatActivity {
         Contratxt.setText("");
 
 
+    }
+
+    public void TomarDatos(View miV) {
+
+        email = Emailtxt.getText().toString();
+        contra = Contratxt.getText().toString();
+
+        SQL_DB sqlAUX = new SQL_DB(this, "DB_Usuarios", null, 1);
+        SQLiteDatabase db = sqlAUX.getWritableDatabase();
+
+
+        String Correodb = email;
+        String Contradb = contra;
+
+        fila = db.rawQuery("select Email,Contrasena from Usuarios where Email='"+email+"' and Contrasena='"+contra+"' ",null);
+
+        while (fila.moveToFirst()==true){
+            String emai=fila.getString(0);
+            String pass=fila.getString(1);
+            if(email.equals(emai) && contra.equals(pass)){
+                Intent Entrar = new Intent(Login.this, Menulateral.class);
+                startActivity(Entrar);
+
+            }
+            else
+                Toast.makeText(this, "Correo o contraseña incorrectos", Toast.LENGTH_SHORT).show();
+        }
     }
 
     /*private void PDialog() {

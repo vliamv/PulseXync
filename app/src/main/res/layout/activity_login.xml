@@ -99,7 +99,7 @@
         android:background="@color/colorTop"
         android:layout_below="@+id/contraseña"
         android:layout_centerHorizontal="true"
-        android:onClick="Validar" />
+        android:onClick="TomarDatos (Login)" />
 
     <TextView
         android:text="Pulse.Inc"

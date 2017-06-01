@@ -37,5 +37,8 @@
         <activity android:name=".Pulse_xync" />
         <activity android:name=".Reuniones"></activity>
     </application>
-
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
+    <uses-permission android:name="android.permission.MODE_WORLD_READABLE" />
+    <uses-permission android:name="android.permission.MODE_WORLD_WRITABLE" />
 </manifest>

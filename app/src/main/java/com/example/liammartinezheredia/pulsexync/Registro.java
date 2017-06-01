@@ -2,7 +2,9 @@ package com.example.liammartinezheredia.pulsexync;
 
 import android.app.ProgressDialog;
 import android.content.ContentValues;
+import android.content.Context;
 import android.content.Intent;
+import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.media.MediaCodec;
 import android.support.v7.app.AppCompatActivity;
@@ -14,7 +16,13 @@ import android.view.inputmethod.InputMethodManager;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+
 public class Registro extends AppCompatActivity {
+
+    private Cursor fila;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,6 +39,13 @@ public class Registro extends AppCompatActivity {
     String contra;
     String contra2;
 
+    TextView nombretxt = (TextView) findViewById(R.id.nombretxt);
+    TextView emailtxt = (TextView) findViewById(R.id.email);
+    TextView contratxt = (TextView) findViewById(R.id.contra);
+    TextView contra2txt = (TextView) findViewById(R.id.contra2);
+
+
+
 
 
     public void Regresarlogin(View miV){
@@ -42,9 +57,33 @@ public class Registro extends AppCompatActivity {
 
     public void SubirDatos(View miV){
         SQL_DB sqlAUX = new SQL_DB(this,"DB_Usuarios", null, 1);
-        final SQLiteDatabase db = sqlAUX.getWritableDatabase();
+         SQLiteDatabase db = sqlAUX.getWritableDatabase();
 
-        ContentValues datos = new ContentValues();
+        nombre = nombretxt.getText().toString();
+        email = emailtxt.getText().toString();
+        contra = contratxt.getText().toString();
+
+
+        String Nomdb = nombre;
+        String Correodb = email;
+        String Contradb = contra;
+
+        ContentValues values = new ContentValues();
+        values.put("Email", Correodb);
+        values.put("Contrasena", Contradb);
+        values.put("Nombre", Nomdb);
+
+        db.insert("Usuarios",null,values);
+        db.close();
+
+
+
+
+
+
+
+
+        /*ContentValues datos = new ContentValues();
         datos.put("Nombre", nombre);
         datos.put("Email", email);
         datos.put("Contraseña", contra);
@@ -62,7 +101,7 @@ public class Registro extends AppCompatActivity {
             Toast.makeText(getApplicationContext(),
                     "No existe la base de datos",
                     Toast.LENGTH_LONG).show();
-        }
+        }*/
     }
 
     public void validar(View miV){
@@ -73,13 +112,9 @@ public class Registro extends AppCompatActivity {
         boolean contrafull = false;
         boolean contraigual = false;
 
-        TextView nombretxt = (TextView) findViewById(R.id.nombretxt);
         nombre = nombretxt.getText().toString();
-        TextView emailtxt = (TextView) findViewById(R.id.email);
         email = emailtxt.getText().toString();
-        TextView contratxt = (TextView) findViewById(R.id.contra);
         contra = contratxt.getText().toString();
-        TextView contra2txt = (TextView) findViewById(R.id.contra2);
         contra2 = contra2txt.getText().toString();
 
 
@@ -186,4 +221,23 @@ public class Registro extends AppCompatActivity {
 
 
     }
+    /*public void MeterDatos(View miv){
+        String fichero = "Usuarios.txt";
+
+        String Correodb =  ;
+        FileOutputStream fos;
+        try {
+            fos = openFileOutput(fichero, Context.MODE_PRIVATE);
+            fos.write(Correodb.getBytes());
+            fos.close();
+        } catch (FileNotFoundException e) {
+            Toast.makeText(getApplicationContext(),
+                    "Error en Insert " + e,
+                    Toast.LENGTH_LONG).show();
+        } catch (IOException e) {
+            Toast.makeText(getApplicationContext(),
+                    "Error en Insert " + e,
+                    Toast.LENGTH_LONG).show();
+        }
+    }*/
 }
